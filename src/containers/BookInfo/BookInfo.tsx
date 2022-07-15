@@ -1,9 +1,16 @@
 import { FC } from 'react';
+import { useRouter } from 'next/router';
 
 import { BookInfoProps } from './BookInfo.props';
 import s from './BookInfo.module.css';
 
 const BookInfo: FC<BookInfoProps> = ({ book }) => {
+
+  const router = useRouter();
+
+  const onClickBack = () => {
+    router.back();
+  };
 
   const { title, subtitle, image, desc } = book;
 
@@ -37,7 +44,7 @@ const BookInfo: FC<BookInfoProps> = ({ book }) => {
               {details.map(item => {
                 const { label, value } = item;
                 return (
-                  <div  key={label} className={s.row}>
+                  <div key={label} className={s.row}>
                     <span className={s.label}>{label}</span>
                     <span className={s.value}>{value}</span>
                   </div>
@@ -47,6 +54,9 @@ const BookInfo: FC<BookInfoProps> = ({ book }) => {
             <div className={s.annotation}>Annotation</div>
             <div className={s.description}>{desc}</div>
           </div>
+        </div>
+        <div className={s.footer}>
+          <button onClick={onClickBack}>Return back</button>
         </div>
       </main>
     </div>
