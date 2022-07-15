@@ -1,18 +1,26 @@
 import type { NextPage, NextPageContext } from 'next';
 
 import { BookItem } from 'interfaces/books.interface';
+import { Head } from 'components/Head';
 import { BooksList } from 'containers/BooksList';
 import { Category } from 'constants/categories';
 import { booksService } from 'services/booksService';
 
 interface PageProps {
   list: BookItem[];
+  category: Category;
 };
 
-const List: NextPage<PageProps> = ({ list }) => {
+const Page: NextPage<PageProps> = ({ list, category }) => {
   return (
-    <BooksList list={list} />
-  )
+    <>
+      <Head
+        title={`Books: ${category}`}
+        description={`Books list for the category ${category}`}
+      />
+      <BooksList list={list} />
+    </>
+  );
 }
 
 async function getServerSideProps(context: NextPageContext) {
@@ -23,11 +31,12 @@ async function getServerSideProps(context: NextPageContext) {
   return {
     props: {
       list,
+      category,
     }
   };
 };
 
-export default List;
+export default Page;
 export {
   getServerSideProps,
 }
