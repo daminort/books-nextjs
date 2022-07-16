@@ -1,0 +1,12 @@
+.container {
+  padding: 0 2rem;
+}
+
+.main {
+  max-width: 1200px;
+  min-height: 100vh;
+  padding: 1rem 0;
+  margin: 0 auto;
+  display: grid;
+  grid-template: '1fr 3fr';
+}

@@ -3,8 +3,11 @@ import type { NextPage, NextPageContext } from 'next';
 import { BookItem } from 'interfaces/books.interface';
 import { Head } from 'components/Head';
 import { BooksList } from 'containers/BooksList';
+import { Sidebar } from 'containers/Sidebar';
 import { Category } from 'constants/categories';
 import { booksService } from 'services/booksService';
+
+import s from './Category.module.css';
 
 interface PageProps {
   list: BookItem[];
@@ -18,7 +21,12 @@ const Page: NextPage<PageProps> = ({ list, category }) => {
         title={`Books: ${category}`}
         description={`Books list for the category ${category}`}
       />
-      <BooksList list={list} />
+      <div className={s.container}>
+        <main className={s.main}>
+          <Sidebar />
+          <BooksList list={list} />
+        </main>
+      </div>
     </>
   );
 }

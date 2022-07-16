@@ -12,25 +12,23 @@ const BooksList: NextPage<BooksListProps> = ({ list }) => {
 
   return (
     <div className={s.container}>
-      <main className={s.main}>
-        <h3 className={s.title}>
-          Books list for the category <span>{category}</span>
-        </h3>
+      <h3 className={s.title}>
+        Books list for the category <span>{category}</span>
+      </h3>
 
-        <div className={s.grid}>
-          {list.map(item => {
-            const { title, image, isbn13 } = item;
-            return (
-              <Card
-                key={isbn13}
-                title={title}
-                image={image}
-                isbn={isbn13}
-              />
-            )
-          })}
-        </div>
-      </main>
+      <div className={s.grid}>
+        {list.map(item => {
+          const { title, image, isbn13 } = item;
+          return (
+            <Card
+              key={isbn13}
+              title={title}
+              image={image}
+              isbn={isbn13}
+            />
+          )
+        })}
+      </div>
     </div>
   )
 }
