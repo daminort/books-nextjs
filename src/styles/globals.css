@@ -20,6 +20,11 @@ a {
   text-decoration: none;
 }
 
+svg {
+  display: inline-block;
+  fill: currentColor;
+}
+
 * {
   box-sizing: border-box;
 }

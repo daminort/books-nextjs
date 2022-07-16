@@ -1,6 +1,7 @@
-import { FC } from 'react';
+import { FC, useCallback } from 'react';
 import { useRouter } from 'next/router';
 
+import { Button } from 'components/Button';
 import { BookInfoProps } from './BookInfo.props';
 import s from './BookInfo.module.css';
 
@@ -8,9 +9,9 @@ const BookInfo: FC<BookInfoProps> = ({ book }) => {
 
   const router = useRouter();
 
-  const onClickBack = () => {
+  const onClickBack = useCallback(() => {
     router.back();
-  };
+  }, [router]);
 
   const { title, subtitle, image, desc } = book;
 
@@ -56,7 +57,11 @@ const BookInfo: FC<BookInfoProps> = ({ book }) => {
           </div>
         </div>
         <div className={s.footer}>
-          <button onClick={onClickBack}>Return back</button>
+          <Button
+            caption="Return back"
+            icon="chevronsLeft"
+            onClick={onClickBack}
+          />
         </div>
       </main>
     </div>
