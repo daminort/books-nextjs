@@ -1,19 +1,30 @@
-import { FC } from 'react';
+import { FC, ChangeEvent } from 'react';
 
-type Props = {
-  name: string,
-  onClick: () => void,
-};
+import { InputProps } from './Input.props';
+import s from './Input.module.css';
 
-const Input: FC<Props> = ({ onClick, name }) => {
+const Input: FC<InputProps> = (props) => {
+  const {
+    value,
+    onChange,
+    className = '',
+    placeholder = '',
+  } = props;
+
+  const onChangeLocal = (event: ChangeEvent<HTMLInputElement>) => {
+    onChange(event.target.value);
+  };
 
   return (
-    <div onClick={onClick}>
-      {name}
-    </div>
+    <input
+      value={value}
+      onChange={onChangeLocal}
+      className={`${s.input} ${className}`}
+      placeholder={placeholder}
+    />
   );
 };
 
-export { 
+export {
   Input,
 };
