@@ -1,7 +1,7 @@
-import { booksReducer } from './Books';
+import { recentReducer } from './Recent';
 
 const rootReducer = {
-  Books: booksReducer,
+  Recent: recentReducer,
 };
 
 export {

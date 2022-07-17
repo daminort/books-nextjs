@@ -4,14 +4,13 @@ import { BookItem } from 'interfaces/books.interface';
 import { Head } from 'components/Head';
 import { BooksList } from 'containers/BooksList';
 import { Sidebar } from 'containers/Sidebar';
-import { Category } from 'constants/categories';
 import { booksService } from 'services/booksService';
 
 import s from './Category.module.css';
 
 interface PageProps {
   list: BookItem[];
-  category: Category;
+  category: string;
 };
 
 const Page: NextPage<PageProps> = ({ list, category }) => {
@@ -34,7 +33,7 @@ const Page: NextPage<PageProps> = ({ list, category }) => {
 async function getServerSideProps(context: NextPageContext) {
 
   const { category } = context.query;
-  const list: BookItem[] = await booksService.getBooksList((category as Category));
+  const list: BookItem[] = await booksService.getBooksList((category as string));
 
   return {
     props: {

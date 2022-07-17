@@ -1,13 +1,12 @@
 import axios from 'axios';
 
 import { config } from 'config';
-import { Category } from 'constants/categories';
 import { BookItem, Book } from 'interfaces/books.interface';
 import { adaptUtils } from 'utils/adaptUtils';
 import { axiosUtils } from 'utils/axiosUtils';
 import { SearchResponse, EntityResponse } from './books.dto';
 
-async function getBooksList(category: Category): Promise<BookItem[]> {
+async function getBooksList(category: string): Promise<BookItem[]> {
   const url = `${config.apiURL}/search/${category}`;
 
   try {
