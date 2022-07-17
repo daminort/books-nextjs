@@ -19,6 +19,7 @@ const Card: FC<CardProps> = ({ title, isbn, image }) => {
           layout="responsive"
           placeholder="blur"
           blurDataURL={image}
+          alt={title}
         />
         <div className={s.title}>{title}</div>
       </div>

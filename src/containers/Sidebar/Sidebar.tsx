@@ -1,11 +1,17 @@
 import { FC, useState, useCallback, FormEvent } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 
+import { useDispatch, useSelector } from 'store';
+import { recentActions, recentSelectors } from 'store/Recent';
+
 import { Input } from 'components/Input';
-import { SidebarProps } from './Sidebar.props';
 import s from './Sidebar.module.css';
 
-const Sidebar: FC<SidebarProps> = () => {
+const Sidebar: FC = () => {
+
+  const dispatch = useDispatch();
+  const list = useSelector(recentSelectors.getList);
 
   const router = useRouter();
   const [value, setValue] = useState<string>('');
@@ -16,6 +22,7 @@ const Sidebar: FC<SidebarProps> = () => {
 
   const onSubmit = useCallback((event: FormEvent) => {
     event.preventDefault();
+    dispatch(recentActions.categoryAdd(value));
     router.push(`/categories/${value}`);
     setValue('');
   }, [value, router]);
@@ -32,6 +39,20 @@ const Sidebar: FC<SidebarProps> = () => {
           placeholder="Enter the category..."
         />
       </form>
+      <h3 className={s.subtitle}>
+        Recent categories
+      </h3>
+      <nav>
+        {list.map(category => {
+          return (
+            <Link href={`/categories/${category}`} key={category}>
+              <div className={s.recent}>
+                <a>{category}</a>
+              </div>
+            </Link>
+          );
+        })}
+      </nav>
     </div>
   );
 };
