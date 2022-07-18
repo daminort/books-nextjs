@@ -20,12 +20,14 @@ const Page: NextPage<PageProps> = ({ list, category }) => {
         title={`Books: ${category}`}
         description={`Books list for the category ${category}`}
       />
-      <div className={s.container}>
-        <main className={s.main}>
+      <main className={s.grid}>
+        <div className={s.sidebar}>
           <Sidebar />
+        </div>
+        <div className={s.list}>
           <BooksList list={list} />
-        </main>
-      </div>
+        </div>
+      </main>
     </>
   );
 }

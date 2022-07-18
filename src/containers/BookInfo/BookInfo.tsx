@@ -26,45 +26,39 @@ const BookInfo: FC<BookInfoProps> = ({ book }) => {
   ];
 
   return (
-    <div className={s.container}>
-      <main className={s.main}>
-        <div className={s.header}>
-          <h3 className={s.title}>{title}</h3>
-          {subtitle && (
-            <div className={s.subtitle}>{subtitle}</div>
-          )}
+    <main className={s.grid}>
+      <h3 className={s.title}>{title}</h3>
+      {subtitle && (
+        <div className={s.subtitle}>{subtitle}</div>
+      )}
+      <img
+        className={s.cover}
+        src={image}
+        alt={title}
+      />
+      <div className={s.details}>
+        <div className={s.rows}>
+          {details.map(item => {
+            const { label, value } = item;
+            return (
+              <div key={label} className={s.row}>
+                <span className={s.label}>{label}</span>
+                <span className={s.value}>{value}</span>
+              </div>
+            );
+          })}
         </div>
-        <div className={s.content}>
-          <img
-            className={s.cover}
-            src={image}
-            alt={title}
-          />
-          <div className={s.details}>
-            <div className={s.rows}>
-              {details.map(item => {
-                const { label, value } = item;
-                return (
-                  <div key={label} className={s.row}>
-                    <span className={s.label}>{label}</span>
-                    <span className={s.value}>{value}</span>
-                  </div>
-                );
-              })}
-            </div>
-            <div className={s.annotation}>Annotation</div>
-            <div className={s.description}>{desc}</div>
-          </div>
-        </div>
-        <div className={s.footer}>
-          <Button
-            caption="Return back"
-            icon="chevronsLeft"
-            onClick={onClickBack}
-          />
-        </div>
-      </main>
-    </div>
+        <div className={s.annotation}>Annotation</div>
+        <div className={s.description}>{desc}</div>
+      </div>
+      <div className={s.footer}>
+        <Button
+          caption="Return back"
+          icon="chevronsLeft"
+          onClick={onClickBack}
+        />
+      </div>
+    </main>
   );
 };
 
