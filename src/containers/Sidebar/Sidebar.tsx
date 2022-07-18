@@ -42,7 +42,7 @@ const Sidebar: FC = () => {
       <h3 className={s.subtitle}>
         Recent categories
       </h3>
-      <nav>
+      <nav className={s.nav}>
         {list.map(category => {
           return (
             <Link href={`/categories/${category}`} key={category}>

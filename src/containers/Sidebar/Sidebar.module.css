@@ -1,5 +1,5 @@
 .container {
-  width: 260px;
+  width: 100%;
 }
 
 .form {
@@ -18,7 +18,33 @@
   font-size: 1.2rem;
 }
 
+.nav {
+  display: grid;
+  grid-auto-rows: 1rem;
+  grid-row-gap: 0.5rem;
+}
+
 .recent {
-  padding: 0.25rem 0;
   cursor: pointer;
+}
+
+@media screen and (max-width: 900px) {
+  .title {
+    margin-bottom: 0;
+  }
+
+  .subtitle {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .recent {
+    margin-right: 0.5rem;
+  }
 }
